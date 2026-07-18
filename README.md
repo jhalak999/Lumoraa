@@ -12,6 +12,21 @@ tested and import-checked in a clean environment; the frontend has been
 type-checked and production-built. See **Verification** at the bottom for
 exactly what was checked and what you still need to do before going live.
 
+LOGIN:
+
+<img width="1060" height="707" alt="Screenshot 2026-07-19 at 4 21 29 AM" src="https://github.com/user-attachments/assets/e0afc4e5-7ce6-4199-94ac-a343a31bb39a" />
+
+DASBOARD : 
+
+<img width="1426" height="824" alt="Screenshot 2026-07-19 at 4 22 14 AM" src="https://github.com/user-attachments/assets/816174b6-6c43-4760-aebb-137b55d9dcf4" />
+
+PROJECT EXAMPLE : 
+
+<img width="1426" height="824" alt="Screenshot 2026-07-19 at 4 22 37 AM" src="https://github.com/user-attachments/assets/d4e08691-bbcd-40b1-9a7e-5a0b24449678" />
+
+
+Checkout a Sample Video Output : https://drive.google.com/drive/folders/1-b4AOQFf4VXIAkMbE4H3mmmseo0H06SA?usp=sharing
+
 ---
 
 ## Architecture at a glance
@@ -211,7 +226,7 @@ exactly what was actually run, in this sandbox, against this code:
   smoke-tested against live services" — budget time for that pass before a
   real launch.
 
-## Known gaps to close before a real launch
+## gaps
 
 - **S3 storage backend** is stubbed (`StorageBackend` interface exists;
   only `LocalStorageBackend` is implemented) — needed before horizontally
