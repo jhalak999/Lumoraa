@@ -1,0 +1,29 @@
+from __future__ import annotations
+
+import uuid
+from typing import Annotated
+
+from fastapi import Depends
+from fastapi.security import OAuth2PasswordBearer
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.core.security import TokenType, decode_token
+from app.db.session import get_db
+from app.models.user import User
+from app.services.auth_service import AuthService
+
+_oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login", auto_error=True)
+
+DbSession = Annotated[AsyncSession, Depends(get_db)]
+
+
+async def get_current_user(
+    db: DbSession,
+    token: Annotated[str, Depends(_oauth2_scheme)],
+) -> User:
+    user_id = decode_token(token, TokenType.ACCESS)
+    auth_service = AuthService(db)
+    return await auth_service.get_user_by_id(uuid.UUID(user_id))
+
+
+CurrentUser = Annotated[User, Depends(get_current_user)]

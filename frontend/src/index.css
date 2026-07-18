@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+/*
+  Lumora design tokens — "editing suite / broadcast studio" direction.
+
+  Base is a deep charcoal-blue (never pure black, like a calibrated studio
+  monitor at rest). Amber is the signature accent — a tungsten studio-light
+  glow used for brand, primary actions, and "completed" states. Cyan is
+  reserved exclusively for "actively processing" states, so it always reads
+  as "live" rather than being a decorative second accent. Sprocket-hole
+  perforations along card headers are the one recurring motif referencing
+  film production — used quietly, never literally illustrated elsewhere.
+*/
+@theme {
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-base: #0e1116;
+  --color-surface: #171b22;
+  --color-surface-raised: #1d222b;
+  --color-border: #262b33;
+  --color-border-strong: #333a45;
+
+  --color-text-primary: #edeef0;
+  --color-text-secondary: #aeb4bd;
+  --color-text-muted: #71767f;
+
+  --color-amber: #f2a93b;
+  --color-amber-dim: #8a6425;
+  --color-cyan: #5ec8d8;
+  --color-danger: #e5484d;
+  --color-danger-dim: #3d1d1e;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    color-scheme: dark;
+  }
+  body {
+    background-color: var(--color-base);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background-color: var(--color-amber);
+    color: #171208;
+  }
+  /* Visible keyboard focus everywhere, matching the amber signature. */
+  :focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  /* The recurring "sprocket" perforation — a quiet nod to film stock,
+     used only on card/section headers. */
+  .sprocket-edge {
+    background-image: radial-gradient(
+      circle at center,
+      var(--color-border-strong) 1.5px,
+      transparent 1.5px
+    );
+    background-size: 14px 100%;
+    background-position: top center;
+    background-repeat: repeat-x;
+    height: 3px;
+  }
+
+  .glow-amber {
+    box-shadow: 0 0 0 1px rgba(242, 169, 59, 0.25), 0 0 24px -8px rgba(242, 169, 59, 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
